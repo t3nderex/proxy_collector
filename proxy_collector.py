@@ -56,7 +56,7 @@ def get_proxy_list():
 
         proxy_list.append(ip)
     return proxy_list
-
+        
     
 if __name__ == "__main__":
 
