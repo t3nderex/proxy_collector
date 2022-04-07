@@ -57,16 +57,6 @@ def get_proxy_list():
         proxy_list.append(ip)
     return proxy_list
 
-def add_https_to_proxy(proxy_list):
-    proxies =[]
-    try:
-        for cnt, proxy in enumerate(proxy_list):
-            proxy = "https://"+proxy
-            proxy_list[cnt] = proxy
-        return proxy_list 
-
-    except(TypeError)as e:
-        return print(e)        
     
 if __name__ == "__main__":
 
@@ -83,7 +73,6 @@ if __name__ == "__main__":
 
     # print(f"프록시 리스트:{proxy_list}")
     
-    proxy_url_list = add_https_to_proxy(proxy_list)
     with open("tools/proxy/proxy_list.txt", "w", encoding="utf-8") as f:
         f.writelines(f"{proxy}\n" for proxy in proxy_list)
 
