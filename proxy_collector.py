@@ -14,6 +14,10 @@ def set_driver(url):
     # webdriver_options.add_argument('headless')
     webdriver_options.add_argument('disable-gpu')
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=webdriver_options)
+<<<<<<< HEAD
+=======
+
+>>>>>>> f53c08a951818d2f9fc0cccd88838e97004222dd
     driver.get(url=url)
     return driver
 
@@ -34,7 +38,7 @@ def set_select_box(driver):
         set_select_box(driver)
     
     print(f"셀렉트 옵션:{select_option}")
-
+    return True
 
 def get_proxy_list():
     """
@@ -62,17 +66,25 @@ if __name__ == "__main__":
     url = 'https://spys.one/en/https-ssl-proxy/'
 
     
+<<<<<<< HEAD
     chrome_driver = set_driver(url)
     set_select_box(chrome_driver)
+=======
+    driver = set_driver(driver_path, url)
+    driver.implicitly_wait(3)
+    set_select_box(driver)
+>>>>>>> f53c08a951818d2f9fc0cccd88838e97004222dd
 
-    html = chrome_driver.page_source
+    html = driver.page_source
     soup = BeautifulSoup(html, 'html.parser')
     proxy_list = get_proxy_list()
-
-    # print(f"프록시 리스트:{proxy_list}")
     
+<<<<<<< HEAD
     with open("proxy_list.txt", "w", encoding="utf-8") as f:
+=======
+    with open("./proxy_list.txt", "w", encoding="utf-8") as f:
+>>>>>>> f53c08a951818d2f9fc0cccd88838e97004222dd
         f.writelines(f"{proxy}\n" for proxy in proxy_list)
 
     print(proxy_list)
-    chrome_driver.quit()
+    driver.quit()
