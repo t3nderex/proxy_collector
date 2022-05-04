@@ -1,11 +1,10 @@
 from bs4 import BeautifulSoup
-from numpy import isin
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import Select
+from webdriver_manager.chrome import ChromeDriverManager
 
-
-def set_driver(driver_path, url):
+def set_driver(url):
     """
     Set up the chrome driver.
     :return: Chrome driver for which setup is completed.
@@ -14,7 +13,7 @@ def set_driver(driver_path, url):
     webdriver_options = webdriver.ChromeOptions()
     # webdriver_options.add_argument('headless')
     webdriver_options.add_argument('disable-gpu')
-    driver = webdriver.Chrome(service=Service(executable_path = driver_path), options=webdriver_options)
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=webdriver_options)
     driver.get(url=url)
     return driver
 
@@ -60,11 +59,10 @@ def get_proxy_list():
     
 if __name__ == "__main__":
 
-    driver_path = 'tools/proxy/chromedriver'
     url = 'https://spys.one/en/https-ssl-proxy/'
 
     
-    chrome_driver = set_driver(driver_path, url)
+    chrome_driver = set_driver(url)
     set_select_box(chrome_driver)
 
     html = chrome_driver.page_source
@@ -73,7 +71,7 @@ if __name__ == "__main__":
 
     # print(f"프록시 리스트:{proxy_list}")
     
-    with open("tools/proxy/proxy_list.txt", "w", encoding="utf-8") as f:
+    with open("proxy_list.txt", "w", encoding="utf-8") as f:
         f.writelines(f"{proxy}\n" for proxy in proxy_list)
 
     print(proxy_list)
