@@ -7,4 +7,5 @@
 
 ## 수집 사이트
 - https://spys.one/en/https-ssl-proxy/
+- https://free-proxy-list.net/
 - 시간될 때 계속 추가할 예정
